@@ -116,21 +116,6 @@ module.exports = Backbone.View.extend({
     return el;
   },
 
-  submit: function() {
-    var el = this.make('input', {class: "submit", type: "button", value: I18n.t('save')});
-    return el;
-  },
-
-  destroy: function() {
-    var el = this.make('input', {class: "destroy", type: "button", value: I18n.t('delete')});
-    return el;
-  },
-
-  cancel: function() {
-    var el = this.make('input', {class: "cancel", type: "button", value: I18n.t('cancel')});
-    return el;
-  },
-
   bindElementToAttribute: function(el, name, eventType) {
     var that = this;
     eventType = typeof(eventType) != 'undefined' ? eventType : "change";

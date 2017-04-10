@@ -505,28 +505,6 @@ describe('StoryView', function() {
 
   });
 
-  describe("parseDescription", function() {
-
-    beforeEach(function() {
-      this.view.model.collection.get = sinon.stub();
-      this.$description = $('<div>#9999 #12345</div>');
-      this.view.parseDescription(this.$description);
-    });
-
-    it("should ignore invalid ids", function(){
-      expect(this.$description.find('.StoryLink').length).toBe(0);
-    });
-
-    it("turns valid ids into links", function(){
-      this.view.model.collection.get = sinon.stub().returns(this.story);
-      this.$description.text(` #${this.view.model.id}`);
-      this.view.parseDescription(this.$description);
-
-      expect(this.$description.find('.StoryLink').length).toBe(1);
-    });
-
-  });
-
   describe("attachinary", function() {
 
     beforeEach(function() {

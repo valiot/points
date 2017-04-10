@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import StoryControls from 'components/story/StoryControls';
+import StoryDescription from 'components/story/story_description';
 
 var Clipboard = require('clipboard');
 
@@ -12,7 +13,6 @@ var NoteForm = require('./note_form');
 var NoteView = require('./note_view');
 var TaskForm = require('./task_form');
 var TaskView = require('./task_view');
-var StoryLinkView = require('./story_link_view');
 
 module.exports = FormView.extend({
 
@@ -329,10 +329,11 @@ module.exports = FormView.extend({
 
   editDescription: function(ev) {
     const $target = $(ev.target);
-    if ($target.hasClass('description') || $target.hasClass('edit-description')) {
-      this.model.set({editingDescription: true});
-      this.render();
-    }
+    if ($target.hasClass('story-link') || $target.hasClass('story-link-icon'))
+      return false;
+
+    this.model.set({editingDescription: true});
+    this.render();
   },
 
   // Visually highlight the story if an external change happens
@@ -362,7 +363,7 @@ module.exports = FormView.extend({
 
       if (this.id != undefined) {
         var $wrapper = $(this.make('div', {class: 'col-xs-12 form-group input-group input-group-sm', id: inputId}));
-        var inputId = 'story-link-' + this.id;
+        var inputId = 'story-uri-' + this.id;
 
         $wrapper.append(this.make('input', {
           id: inputId,
@@ -501,7 +502,7 @@ module.exports = FormView.extend({
       this.$el.append(
         this.makeFormControl(function(div) {
           $(div).append(this.label("description", I18n.t('activerecord.attributes.story.description')));
-          $(div).append('<br/>');
+
           if(this.model.isNew() || this.model.get('editingDescription')) {
             var textarea = this.textArea("description");
             $(textarea).atwho({
@@ -511,10 +512,7 @@ module.exports = FormView.extend({
             $(div).append(textarea);
           } else {
             var $description = $(this.make('div', {class: 'description'}));
-            $description.html(window.md.makeHtml(this.model.escape('description')));
             $(div).append($description);
-            this.parseDescription($description);
-            this.renderStoryLinks($description);
 
             if (!this.model.get('description') || 0 === this.model.get('description').length) {
               $description.after(
@@ -575,6 +573,17 @@ module.exports = FormView.extend({
       />,
       this.$('[data-story-controls]').get(0)
     );
+
+    const $description = this.$('.description');
+
+    if ($description.length) {
+      ReactDOM.render(
+        <StoryDescription
+          stories={this.model.collection}
+          description={this.model.escape('description')} />,
+        $description[0]
+      );
+    }
   },
 
   setClassName: function() {
@@ -747,33 +756,6 @@ module.exports = FormView.extend({
       $div.append(content.control);
     }
     return div;
-  },
-
-  parseDescription: function($description) {
-    const regex = /(?!\s|\b)(#\d+)(?!\w)/g;
-    const content = $description.html();
-    this.linkedStories = {};
-
-    let id, story;
-    return $description.html(content.replace(regex, (story_id) => {
-      id = story_id.substring(1);
-      story = this.model.collection.get(id);
-      if (!story) return story_id;
-
-      this.linkedStories[id] = story;
-      return `<a class="StoryLink" data-story-id="${id}"></a>`
-    }));
-  },
-
-  renderStoryLinks: function($description) {
-    let $link;
-    _.each($description.find('.StoryLink'), (link) => {
-      $link = $(link);
-      new StoryLinkView({
-        model: this.linkedStories[$link.data().storyId],
-        el: $link
-      }).render()
-    });
   },
 
   attachmentDone: function(event) {

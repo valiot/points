@@ -221,7 +221,7 @@ div.story-title abbr.initials {
   border: none;
 }
 
-.input-group-btn .btn-clipboard.btn-clipboard-id {
+.input-group-btn .btn-clipboard-id {
   padding-top: 6px;
 }
 
@@ -365,7 +365,7 @@ a.button {
   margin: 0;
 }
 
-.StoryLink {
+.story-link {
   background: $lightgrey-11;
   border: 1px solid $lightgrey-13;
   border-radius: 2px;
@@ -374,9 +374,9 @@ a.button {
   margin: 1px;
   padding: 1px 3px;
 
-  &__icon {
-    width: 12px;
-    height: 12px;
+  &-icon {
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: $white;
     display: inline-block;
@@ -396,7 +396,6 @@ a.button {
     }
 
     &.aux.delivered {
-      margin-left: -1px;
       background: $darkred;
     }
 
@@ -404,8 +403,9 @@ a.button {
     &.mi.rejected {
       color: $chameleon-3;
       border: none;
-      font-size: 14px;
-      margin: -3px 1px 0 1px;
+      font-size: 12px;
+      background: transparent;
+      margin: -4px 1px 0 1px;
     }
 
     &.mi.rejected {
