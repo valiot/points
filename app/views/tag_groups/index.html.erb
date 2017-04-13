@@ -1,0 +1,13 @@
+<% content_for :title_bar do %>
+  <% if policy(TagGroup).new? %>
+    <%= link_to t('new tag_group'), new_tag_group_path, class: 'btn btn-primary btn-sm navbar-btn' %>
+  <% end %>
+  <%= link_to t('back'), root_path, class: "btn btn-primary btn-sm navbar-btn" %>
+<% end %>
+
+<div id="projects" class="projects-list">
+  <div class="row item">
+    <div class="col-md-12">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+class TagGroupPolicy < StoryPolicy
+
+end
