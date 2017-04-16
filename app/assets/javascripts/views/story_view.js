@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import StoryControls from 'components/story/StoryControls';
-import StoryDescription from 'components/story/story_description';
+import StoryDescription from 'components/story/StoryDescription';
 
 var Clipboard = require('clipboard');
 
@@ -20,6 +20,7 @@ module.exports = FormView.extend({
   alert: require('templates/alert.ejs'),
 
   tagName: 'div',
+  linkedStories: {},
 
   initialize: function(options) {
     _.extend(this, _.pick(options, "isSearchResult"));
@@ -330,7 +331,7 @@ module.exports = FormView.extend({
   editDescription: function(ev) {
     const $target = $(ev.target);
     if ($target.hasClass('story-link') || $target.hasClass('story-link-icon'))
-      return false;
+      return;
 
     this.model.set({editingDescription: true});
     this.render();
@@ -511,18 +512,8 @@ module.exports = FormView.extend({
             });
             $(div).append(textarea);
           } else {
-            var $description = $(this.make('div', {class: 'description'}));
+            var $description = $('<div class="description"><div>'); //$(this.make('div', {class: 'description'}));
             $(div).append($description);
-
-            if (!this.model.get('description') || 0 === this.model.get('description').length) {
-              $description.after(
-                this.make('input', {
-                  class: this.isReadonly() ? '' : 'edit-description',
-                  type: 'button',
-                  value: I18n.t('edit')
-                })
-              );
-            }
           }
         })
       );
@@ -574,16 +565,28 @@ module.exports = FormView.extend({
       this.$('[data-story-controls]').get(0)
     );
 
-    const $description = this.$('.description');
-
-    if ($description.length) {
+    const descriptionContainer = this.$('.description')[0];
+    if (descriptionContainer) {
+      ReactDOM.unmountComponentAtNode(descriptionContainer);
       ReactDOM.render(
         <StoryDescription
-          stories={this.model.collection}
-          description={this.model.escape('description')} />,
-        $description[0]
-      );
+          linkedStories={this.linkedStories}
+          isReadonly={this.isReadonly()}
+          description={this.parseDescription()} />,
+          descriptionContainer
+        );
     }
+  },
+
+  parseDescription: function() {
+    const description = window.md.makeHtml(this.model.escape('description'));
+    var id, story;
+    return description.replace(/(?!\s|\b)(#\d+)(?!\w)/g, story_id => {
+      id = story_id.substring(1);
+      story = this.model.collection.get(id);
+      this.linkedStories[id] = story;
+      return (story) ? `<a data-story-id='${id}'></a>` : story_id;
+    });
   },
 
   setClassName: function() {

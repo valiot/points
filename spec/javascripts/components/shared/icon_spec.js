@@ -2,7 +2,7 @@ import jasmineEnzyme from 'jasmine-enzyme';
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Icon from 'components/shared/icon';
+import Icon from 'components/shared/Icon';
 
 describe('<Icon />', function() {
 

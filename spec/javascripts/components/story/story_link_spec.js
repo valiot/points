@@ -2,8 +2,8 @@ import jasmineEnzyme from 'jasmine-enzyme';
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import StoryLink from 'components/story/story_link';
-import Icon from 'components/shared/icon';
+import StoryLink from 'components/story/StoryLink';
+import Icon from 'components/shared/Icon';
 
 const story = {id: 2, get: sinon.stub().returns('unscheduled')};
 

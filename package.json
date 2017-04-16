@@ -19,6 +19,7 @@
     "cloudinary_js": "^2.1.2",
     "ejs-compiled-loader": "^2.1.1",
     "gritter": "^1.7.4",
+    "html-react-parser": "^0.3.3",
     "i18n-js": "http://github.com/fnando/i18n-js/archive/v3.0.0.rc12.tar.gz",
     "jquery": "^3.1.0",
     "jquery-ui-dist": "^1.12.0",

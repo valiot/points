@@ -2,8 +2,8 @@ import jasmineEnzyme from 'jasmine-enzyme';
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import StoryDescription from 'components/story/story_description';
-import StoryLink from 'components/story/story_link';
+import StoryDescription from 'components/story/StoryDescription';
+import StoryLink from 'components/story/StoryLink';
 import Markdown from 'react-remarkable';
 
 var defaultProps = {
