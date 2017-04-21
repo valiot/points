@@ -34,7 +34,7 @@ module StoryOperations
       story_link = "#{model.base_uri}#story-#{model.id}"
       [
         {
-            fallback: 'Required plain-text summary of the attachment.',
+            fallback: "The story '#{model.title}' has been #{model.state}.",
             color: '#36a64f',
             title: "#{model.project.name}",
             title_link: "#{story_link}",
@@ -42,7 +42,7 @@ module StoryOperations
             fields: [
                 {
                     title: 'Assigned to',
-                    value: "#{model.acting_user.name}",
+                    value: "#{model.owned_by_name}",
                     short: true
                 },
 				        {
@@ -54,7 +54,7 @@ module StoryOperations
             footer: 'Disruptive Angels',
             footer_icon: 'https://disruptive-blogs.s3.amazonaws.com/2015/Dec/DS_icono-1450215555732.png'
         }
-      ].to_json
+      ]
     end
   end
 end
