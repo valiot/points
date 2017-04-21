@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/DisruptiveAngels/cm42-central-support.git
-  revision: 16aa21b6b7198fc5c215042c6e7a768b6f37aa5a
+  revision: 92a5878a33a3c27bda3e450952df6116b3cf3a0f
   branch: master
   specs:
     central-support (0.9.3)

@@ -54,7 +54,7 @@ module StoryOperations
             footer: 'Disruptive Angels',
             footer_icon: 'https://disruptive-blogs.s3.amazonaws.com/2015/Dec/DS_icono-1450215555732.png'
         }
-      ].to_json
+      ]
     end
   end
 end
