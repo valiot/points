@@ -1,7 +1,7 @@
 GIT
-  remote: git://github.com/Codeminer42/cm42-central-support.git
-  revision: e20ed621257428ebd7180035ca0622fc3445611a
-  branch: master
+  remote: git://github.com/arcticbarra/cm42-central-support.git
+  revision: 8672e73987bdc3edaa8ec9a1ae2be60bfd7be0e5
+  branch: fix-slack
   specs:
     central-support (0.9.3)
       activerecord (>= 3.2)
@@ -563,4 +563,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.14.6
+   1.15.1
