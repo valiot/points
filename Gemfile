@@ -1,8 +1,8 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 ruby '2.3.1'
 
-gem 'rails', '~> 4.2.7.1'
+gem 'rails', '4.2.5.1'
 
 gem 'activeadmin', '~> 1.0.0.pre4'
 gem 'api-pagination'
@@ -57,7 +57,7 @@ gem 'jquery-atwho-rails'
 gem 'gravtastic'
 
 # SSL (https://github.com/pixielabs/letsencrypt-rails-heroku)
-gem 'platform-api', github: 'jalada/platform-api', branch: 'master'
+gem 'platform-api'
 gem 'letsencrypt-rails-heroku', group: 'production'
 
 source 'https://rails-assets.org' do

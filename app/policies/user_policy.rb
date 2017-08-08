@@ -8,15 +8,23 @@ class UserPolicy < ApplicationPolicy
   end
 
   def create?
+    is_admin?
+  end
+
+  def update?
+    is_himself?
+  end
+
+  def destroy?
     is_admin? || is_himself?
   end
 
   def is_himself?
-    current_user == record
+    record == current_user
   end
 
   def enrollment?
-    update?
+    create?
   end
 
   def create_enrollment?
