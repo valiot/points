@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/arcticbarra/cm42-central-support.git
-  revision: 8672e73987bdc3edaa8ec9a1ae2be60bfd7be0e5
+  remote: https://github.com/arcticbarra/cm42-central-support.git
+  revision: 66123958a39e52c3c56084cabfb86f049a42a9d7
   branch: fix-slack
   specs:
     central-support (0.9.3)
@@ -148,6 +148,7 @@ GEM
     connection_pool (2.2.0)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    crass (1.0.6)
     dalli (2.7.6)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
@@ -175,7 +176,7 @@ GEM
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
       railties (>= 4.0, < 5.1)
-    enumerize (2.1.2)
+    enumerize (2.5.0)
       activesupport (>= 3.2)
     equalizer (0.0.11)
     erubis (2.7.0)
@@ -259,7 +260,8 @@ GEM
     letter_opener_web (1.2.3)
       letter_opener (~> 1.0)
       rails (>= 3.2)
-    loofah (2.0.3)
+    loofah (2.19.1)
+      crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
@@ -269,7 +271,7 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mini_portile2 (2.2.0)
+    mini_portile2 (2.4.0)
     minitest (5.10.2)
     moneta (0.8.1)
     multi_json (1.12.1)
@@ -277,8 +279,8 @@ GEM
     multipart-post (2.0.0)
     netrc (0.11.0)
     newrelic_rpm (3.17.0.325)
-    nokogiri (1.8.0)
-      mini_portile2 (~> 2.2.0)
+    nokogiri (1.10.10)
+      mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pg (0.19.0)
     pg_search (1.0.6)
